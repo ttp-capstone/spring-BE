@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Update_at_2024-06-10,_1_54 a_m__[Changes]" date="1717998887963" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-06-10,_1_54 a_m__[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2024-06-10, 1:54 a.m. [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/capstone/ttp/controllers/AuthenticationController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/capstone/ttp/controllers/AuthenticationController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-06-10,_1_54 a_m__[Changes]/AuthenticationController.class" />
+  </binary>
+</changelist>
