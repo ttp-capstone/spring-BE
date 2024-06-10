@@ -9,9 +9,12 @@
         <module name="ttp" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
     <bytecodeTargetLevel>
       <module name="ttp" target="17" />
     </bytecodeTargetLevel>
+=======
+>>>>>>> 3da5f494b60671a0cc364d270d41faf10a8def13
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
