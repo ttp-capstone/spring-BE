@@ -7,6 +7,7 @@ import com.capstone.ttp.dtos.RegisterUserDto;
 import com.capstone.ttp.services.AuthenticationService;
 import com.capstone.ttp.services.JwtService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
