@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-HEAD
-=======
   <component name="ExternalStorageConfigurationManager" enabled="true" />
->>>>>>> 3da5f494b60671a0cc364d270d41faf10a8def13
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -11,9 +8,5 @@ HEAD
       </list>
     </option>
   </component>
-HEAD
-  <component name="ProjectRootManager" version="2" default="true" project-jdk-name="22" project-jdk-type="JavaSDK" />
-=======
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK" />
->>>>>>> 3da5f494b60671a0cc364d270d41faf10a8def13
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK" />
 </project>

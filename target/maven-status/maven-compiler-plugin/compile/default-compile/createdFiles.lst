@@ -1,1 +1,13 @@
+com\capstone\ttp\controllers\AuthenticationController.class
+com\capstone\ttp\entitiy\ResearchType.class
+com\capstone\ttp\services\ResearchTypeService.class
+com\capstone\ttp\controllers\ResearchTypeController.class
+com\capstone\ttp\services\ResearchTypeServiceImpl.class
+com\capstone\ttp\dtos\RegisterUserDto.class
+com\capstone\ttp\controllers\AdminController.class
+com\capstone\ttp\entitiy\User.class
+com\capstone\ttp\exceptions\GlobalExceptionHandler.class
+com\capstone\ttp\repositories\ResearchTypeRepository.class
+com\capstone\ttp\services\AuthenticationService.class
 com\capstone\ttp\TtpApplication.class
+com\capstone\ttp\configs\SecurityConfiguration.class
