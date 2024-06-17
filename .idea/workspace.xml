@@ -5,25 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0921b10-0cb9-4d28-8aaf-82eb8553784c" name="Changes" comment="yaml deleted">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/controllers/ResearchTypeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/entitiy/ResearchType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/repositories/ResearchTypeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/responses/AuthenticationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/services/ResearchTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/services/ResearchTypeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-06-05__11_26a_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2024-06-05__11_26a_m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-06-10__1_54a_m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-06-10__1_54a_m___Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/services/AuthUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/entitiy/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/entitiy/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/controllers/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/controllers/ProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/configs/ApplicationConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/configs/ApplicationConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/configs/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/configs/SecurityConfiguration.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/ProjectController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/entitiy/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/entitiy/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/responses/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/responses/LoginResponse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/FundingServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/FundingServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/JwtService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/ProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/ProjectServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.capstone.ttp.TtpApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.capstone.ttp.TtpApplicationTests.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.capstone.ttp.TtpApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.capstone.ttp.TtpApplicationTests.txt" afterDir="false" />
@@ -141,7 +137,8 @@
       <option name="presentableId" value="Default" />
       <updated>1717386111072</updated>
       <workItem from="1718304928480" duration="5660000" />
-      <workItem from="1718367626610" duration="565000" />
+      <workItem from="1718367626610" duration="4393000" />
+      <workItem from="1718466431761" duration="14749000" />
     </task>
     <task id="LOCAL-00001" summary="added role based access">
       <created>1717638211351</created>

@@ -25,6 +25,7 @@ C:\Users\mathe\enterpriseapp\spring-BE\src\main\java\com\capstone\ttp\repositori
 C:\Users\mathe\enterpriseapp\spring-BE\src\main\java\com\capstone\ttp\repositories\ResearchTypeRepository.java
 C:\Users\mathe\enterpriseapp\spring-BE\src\main\java\com\capstone\ttp\repositories\RoleRepository.java
 C:\Users\mathe\enterpriseapp\spring-BE\src\main\java\com\capstone\ttp\repositories\UserRepository.java
+C:\Users\mathe\enterpriseapp\spring-BE\src\main\java\com\capstone\ttp\responses\AuthenticationResponse.java
 C:\Users\mathe\enterpriseapp\spring-BE\src\main\java\com\capstone\ttp\responses\LoginResponse.java
 C:\Users\mathe\enterpriseapp\spring-BE\src\main\java\com\capstone\ttp\services\AuthenticationService.java
 C:\Users\mathe\enterpriseapp\spring-BE\src\main\java\com\capstone\ttp\services\CustomerService.java

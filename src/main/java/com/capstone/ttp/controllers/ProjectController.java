@@ -1,26 +1,35 @@
 package com.capstone.ttp.controllers;
 
 import com.capstone.ttp.entitiy.Project;
+import com.capstone.ttp.entitiy.User;
+import com.capstone.ttp.services.AuthUtils;
 import com.capstone.ttp.services.ProjectServiceImpl;
+import com.sun.security.auth.UserPrincipal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
+import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RequestMapping("/auth")
 @RestController
 public class ProjectController {
 
     private final ProjectServiceImpl projectService;
-
+    private AuthUtils authUtils;
     public ProjectController(ProjectServiceImpl projectService){
         this.projectService = projectService;
     }
 
     @GetMapping("/admin/projects")
     public ResponseEntity<List<Project>> getAllProjects(@RequestParam(required = false) String title){
+
         try {
             List<Project> projects = projectService.getAllProjects(title);
 
@@ -78,8 +87,13 @@ public class ProjectController {
     }
     @GetMapping("/my/projects")
     public ResponseEntity<List<Project>> getMyProjects(@RequestParam(required = false) String title){
-        int userId = 1;
+
         try {
+            int userId = authUtils.getCurrentUserId();
+            if(userId == 0){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            log.info("user id {}", userId);
             List<Project> projects = projectService.getProjectsByUserId(userId);
 
             if (projects.isEmpty()) {
@@ -94,6 +108,7 @@ public class ProjectController {
 
     @GetMapping("/my/projects/{id}")
     public ResponseEntity<Project> getMyProjectById(@PathVariable("id") int id) {
+
         Optional<Project> projectData = projectService.findById(id);
 
         if (projectData.isPresent()) {
@@ -106,7 +121,15 @@ public class ProjectController {
     @PostMapping("my/projects")
     public ResponseEntity<Project> createMyProject(@RequestBody Project project) {
 
+
         try {
+            int userId = authUtils.getCurrentUserId();
+            log.info("User id {}", userId);
+            if(userId == 0){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            project.setUserId(userId);
+
             Project _project = projectService.createProject(project);
             return new ResponseEntity<>(_project, HttpStatus.CREATED);
         } catch (Exception e) {
