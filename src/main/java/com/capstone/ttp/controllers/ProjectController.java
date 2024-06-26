@@ -1,9 +1,11 @@
 package com.capstone.ttp.controllers;
 
+import com.capstone.ttp.entitiy.AppliedFunding;
 import com.capstone.ttp.entitiy.Project;
 import com.capstone.ttp.entitiy.User;
-import com.capstone.ttp.services.AuthUtils;
+import com.capstone.ttp.services.AppliedFundingServiceImpl;
 import com.capstone.ttp.services.ProjectServiceImpl;
+import com.capstone.ttp.services.UserService;
 import com.sun.security.auth.UserPrincipal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -22,9 +27,13 @@ import java.util.Optional;
 public class ProjectController {
 
     private final ProjectServiceImpl projectService;
-    private AuthUtils authUtils;
-    public ProjectController(ProjectServiceImpl projectService){
+    private final UserService userService;
+    private final AppliedFundingServiceImpl appliedFundingService;
+
+    public ProjectController(ProjectServiceImpl projectService, UserService userService, AppliedFundingServiceImpl appliedFundingService){
         this.projectService = projectService;
+        this.userService = userService;
+        this.appliedFundingService = appliedFundingService;
     }
 
     @GetMapping("/admin/projects")
@@ -86,14 +95,12 @@ public class ProjectController {
         }
     }
     @GetMapping("/my/projects")
-    public ResponseEntity<List<Project>> getMyProjects(@RequestParam(required = false) String title){
-
+    public ResponseEntity<List<Project>> getMyProjects(@RequestHeader("Username") String username, @RequestParam(required = false) String title){
+//        log.info("info" );
         try {
-            int userId = authUtils.getCurrentUserId();
-            if(userId == 0){
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
-            log.info("user id {}", userId);
+            Optional<User> user = userService.findByEmail(username);
+//            log.info("user"+user.get().getId());
+            int userId = user.get().getId();
             List<Project> projects = projectService.getProjectsByUserId(userId);
 
             if (projects.isEmpty()) {
@@ -102,34 +109,41 @@ public class ProjectController {
 
             return new ResponseEntity<>(projects, HttpStatus.OK);
         } catch (Exception e) {
+            log.error("Error fetching projects: {}", e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/my/projects/{id}")
-    public ResponseEntity<Project> getMyProjectById(@PathVariable("id") int id) {
+    public ResponseEntity<?> getMyProjectById(@PathVariable("id") int id) {
 
         Optional<Project> projectData = projectService.findById(id);
 
         if (projectData.isPresent()) {
-            return new ResponseEntity<>(projectData.get(), HttpStatus.OK);
+            List<AppliedFunding> appliedFundingData = appliedFundingService.findByProject(projectData.get());
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("project", projectData.get());
+            response.put("appliedFunding", appliedFundingData);
+
+            return ResponseEntity.ok().body(response);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("my/projects")
-    public ResponseEntity<Project> createMyProject(@RequestBody Project project) {
-
+    public ResponseEntity<Project> createMyProject(@RequestHeader("Username") String username, @RequestBody Project project) {
 
         try {
-            int userId = authUtils.getCurrentUserId();
-            log.info("User id {}", userId);
+            Optional<User> user = userService.findByEmail(username);
+            int userId = user.get().getId();
+//            log.info("User id {}", userId);
             if(userId == 0){
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
             project.setUserId(userId);
-
+            project.setStatus("Pending");
             Project _project = projectService.createProject(project);
             return new ResponseEntity<>(_project, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -140,6 +154,13 @@ public class ProjectController {
 
     @PostMapping("my/projects/{id}")
     public ResponseEntity<Project> updateMyProject(@PathVariable("id") int id, @RequestBody Project project) {
+        Optional<Project> proj = projectService.findById(id);
+        String status = proj.get().getStatus();
+        if(status == null){
+            project.setStatus("Pending");
+        }else{
+            project.setStatus(status);
+        }
         Project updatedProject = projectService.updateProject(id, project);
         if (updatedProject != null) {
             return new ResponseEntity<>(updatedProject, HttpStatus.OK);

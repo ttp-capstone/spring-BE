@@ -49,4 +49,10 @@ public class UserService {
 
         return userRepository.save(user);
     }
+
+    public Optional<User> findByEmail(String username) {
+
+        return userRepository.findByEmail(username);
+
+    }
 }

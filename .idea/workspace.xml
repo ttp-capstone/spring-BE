@@ -5,26 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0921b10-0cb9-4d28-8aaf-82eb8553784c" name="Changes" comment="yaml deleted">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/services/AuthUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/entitiy/AppliedFunding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/repositories/AppliedFundingRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/services/AppliedFundingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/services/AppliedFundingServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/controllers/FundingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/controllers/FundingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/controllers/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/controllers/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/configs/ApplicationConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/configs/ApplicationConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/configs/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/configs/SecurityConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/capstone/ttp/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/FundingController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/FundingController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/controllers/ProjectController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/entitiy/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/entitiy/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/responses/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/responses/LoginResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/FundingServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/FundingServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/JwtService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/ProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/ProjectServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.capstone.ttp.TtpApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.capstone.ttp.TtpApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.capstone.ttp.TtpApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.capstone.ttp.TtpApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ttp-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ttp-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ttp-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/ttp-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/capstone/ttp/services/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,28 +54,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.TtpApplication.executor": "Run",
-    "Maven.ttp [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "rolebase",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mathe/enterpriseapp/week5",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.TtpApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ttp [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;rolebase&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mathe/enterpriseapp/week5&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.capstone.ttp.services" />
@@ -138,7 +130,11 @@
       <updated>1717386111072</updated>
       <workItem from="1718304928480" duration="5660000" />
       <workItem from="1718367626610" duration="4393000" />
-      <workItem from="1718466431761" duration="14749000" />
+      <workItem from="1718466431761" duration="17759000" />
+      <workItem from="1718848910300" duration="1928000" />
+      <workItem from="1718974425710" duration="12246000" />
+      <workItem from="1719184965082" duration="11759000" />
+      <workItem from="1719327328444" duration="10755000" />
     </task>
     <task id="LOCAL-00001" summary="added role based access">
       <created>1717638211351</created>
