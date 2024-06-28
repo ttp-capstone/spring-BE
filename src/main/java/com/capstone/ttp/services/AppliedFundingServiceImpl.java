@@ -27,8 +27,18 @@ public class AppliedFundingServiceImpl implements AppliedFundingService{
         return appliedFundingRepository.save(appliedFunding);
     }
 
+    @Override
     public List<AppliedFunding> findByProject(Project project) {
-        return appliedFundingRepository.findByProject(project);
+        List<AppliedFunding> appliedFundingData = appliedFundingRepository.findByProject(project);
+
+        // If you need to fetch Funding data for each AppliedFunding
+        appliedFundingData.forEach(appliedFunding -> {
+            // Fetch corresponding Funding for each AppliedFunding (assuming there's a relationship)
+            Funding funding = appliedFunding.getFunding();
+            // Optionally, you can access and use funding data as needed
+        });
+
+        return appliedFundingData;
     }
 
 }

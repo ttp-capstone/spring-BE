@@ -55,4 +55,10 @@ public class UserService {
         return userRepository.findByEmail(username);
 
     }
+
+    public Optional<User> findById(int id) {
+
+        return userRepository.findById(id);
+
+    }
 }
