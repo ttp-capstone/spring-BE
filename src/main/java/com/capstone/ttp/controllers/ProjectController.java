@@ -9,6 +9,7 @@ import com.capstone.ttp.services.UserService;
 import com.sun.security.auth.UserPrincipal;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,6 +38,7 @@ public class ProjectController {
     }
 
     @GetMapping("/admin/projects")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<List<Project>> getAllProjects(@RequestParam(required = false) String title){
 
         try {
@@ -53,6 +55,8 @@ public class ProjectController {
     }
 
     @GetMapping("/admin/projects/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+
     public ResponseEntity<Project> getProjectById(@PathVariable("id") int id) {
         Optional<Project> projectData = projectService.findById(id);
 
@@ -64,6 +68,7 @@ public class ProjectController {
     }
 
     @PostMapping("admin/projects")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
 
         try {
@@ -76,6 +81,7 @@ public class ProjectController {
     }
 
     @PostMapping("admin/projects/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project project) {
         Project updatedProject = projectService.updateProject(id, project);
         if (updatedProject != null) {
@@ -86,6 +92,7 @@ public class ProjectController {
     }
 
     @DeleteMapping("admin/projects/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<HttpStatus> deleteProject(@PathVariable("id") int id) {
         try {
             projectService.deleteProject(id);

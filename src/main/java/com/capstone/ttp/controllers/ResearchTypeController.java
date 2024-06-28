@@ -4,6 +4,7 @@ import com.capstone.ttp.entitiy.ResearchType;
 import com.capstone.ttp.services.ResearchTypeServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ResearchTypeController {
     }
 
     @GetMapping("/admin/research_types")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<List<ResearchType>> getAllResearchTypes(@RequestParam(required = false) String title){
         try {
             List<ResearchType> researchTypes = researchTypeService.getAllResearchTypes(title);
@@ -34,6 +36,7 @@ public class ResearchTypeController {
     }
 
     @GetMapping("/admin/research_types/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResearchType> getResearchTypeById(@PathVariable("id") int id) {
         Optional<ResearchType> researchTypeData = researchTypeService.findById(id);
 
@@ -45,6 +48,7 @@ public class ResearchTypeController {
     }
 
     @PostMapping("admin/research_types")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResearchType> createResearchType(@RequestBody ResearchType researchType) {
 
         try {
@@ -57,6 +61,7 @@ public class ResearchTypeController {
     }
 
     @PostMapping("admin/research_types/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<ResearchType> updateResearchType(@PathVariable("id") int id, @RequestBody ResearchType researchType) {
         ResearchType updatedresearchType = researchTypeService.updateResearchType(id, researchType);
         if (updatedresearchType != null) {
@@ -67,6 +72,7 @@ public class ResearchTypeController {
     }
 
     @DeleteMapping("admin/research_types/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<HttpStatus> deleteResearchType(@PathVariable("id") int id) {
         try {
             researchTypeService.deleteResearchType(id);

@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -31,6 +32,7 @@ public class FundingController {
     }
 
     @GetMapping("/admin/funding")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<List<Funding>> getAllFunding(@RequestParam(required = false) String program_name){
         try {
             List<Funding> funding = fundingService.getAllFunding(program_name);
@@ -46,6 +48,7 @@ public class FundingController {
     }
 
     @GetMapping("/admin/funding/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<Funding> getFundingById(@PathVariable("id") int id) {
         Optional<Funding> fundingData = fundingService.findById(id);
 
@@ -57,6 +60,7 @@ public class FundingController {
     }
 
     @PostMapping("admin/funding")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<Funding> createFunding(@RequestBody Funding funding) {
         System.out.println(funding);
 
@@ -70,6 +74,7 @@ public class FundingController {
     }
 
     @PostMapping("admin/funding/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<Funding> updateFunding(@PathVariable("id") int id, @RequestBody Funding funding) {
         Funding updatedFunding = fundingService.updateFunding(id, funding);
         if (updatedFunding != null) {
@@ -80,6 +85,7 @@ public class FundingController {
     }
 
     @DeleteMapping("admin/funding/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<HttpStatus> deleteFunding(@PathVariable("id") int id) {
         try {
             fundingService.deleteFunding(id);
