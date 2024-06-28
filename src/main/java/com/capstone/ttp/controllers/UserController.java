@@ -41,7 +41,6 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<User> getUser(@PathVariable int id) {
         Optional<User> user = userService.findById(id);
 
