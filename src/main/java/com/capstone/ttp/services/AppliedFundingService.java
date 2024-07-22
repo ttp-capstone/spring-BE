@@ -9,6 +9,10 @@ import java.util.Optional;
 
 public interface AppliedFundingService {
     public Optional<AppliedFunding> findByFundingAndProject(Funding funding, Project project);
+
     public AppliedFunding saveAppliedFunding(AppliedFunding appliedFunding);
+
     public List<AppliedFunding> findByProject(Project project);
+
+    public List<AppliedFunding> findAll();
 }

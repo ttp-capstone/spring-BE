@@ -160,4 +160,20 @@ public class FundingController {
 
     }
 
+    @GetMapping("all/applied_funding")
+    public ResponseEntity<?> allFunding() {
+
+        try {
+            List<AppliedFunding> appliedFundingData = appliedFundingService.findAll();
+//            log.info("info"+funding);
+            if (appliedFundingData.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(appliedFundingData, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
