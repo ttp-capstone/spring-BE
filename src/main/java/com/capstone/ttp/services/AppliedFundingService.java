@@ -15,4 +15,8 @@ public interface AppliedFundingService {
     public List<AppliedFunding> findByProject(Project project);
 
     public List<AppliedFunding> findAll();
+
+    public int countByStatus(String status);
+
+    List<AppliedFunding> getTop6AppliedFunding();
 }

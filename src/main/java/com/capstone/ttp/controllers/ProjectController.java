@@ -7,6 +7,7 @@ import com.capstone.ttp.services.AppliedFundingServiceImpl;
 import com.capstone.ttp.services.ProjectServiceImpl;
 import com.capstone.ttp.services.UserService;
 import com.sun.security.auth.UserPrincipal;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -102,14 +103,17 @@ public class ProjectController {
         }
     }
     @GetMapping("/my/projects")
-    public ResponseEntity<List<Project>> getMyProjects(@RequestHeader("Username") String username, @RequestParam(required = false) String title){
+    public ResponseEntity<Page<Project>> getMyProjects(@RequestHeader("Username") String username,
+                                                       @RequestParam(required = false) String title,
+                                                       @RequestParam(defaultValue = "0") int page,
+                                                       @RequestParam(defaultValue = "2") int size){
 //        log.info("info" );
         try {
             Optional<User> user = userService.findByEmail(username);
 //            log.info("user"+user.get().getId());
             int userId = user.get().getId();
-            List<Project> projects = projectService.getProjectsByUserId(userId);
-
+            Page<Project> projects = projectService.getProjectsByUserId(userId, page, size);
+            log.info("projects" + projects);
             if (projects.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -184,5 +188,22 @@ public class ProjectController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/my/projects/new")
+    public ResponseEntity<List<Project>> newProjects(@RequestHeader("Username") String username) {
+        Optional<User> user = userService.findByEmail(username);
+        int userId = user.get().getId();
+        if(userId == 0){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        List<Project> projects = projectService.getTop6Projects();
+
+        if (projects.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(projects);
+
     }
 }

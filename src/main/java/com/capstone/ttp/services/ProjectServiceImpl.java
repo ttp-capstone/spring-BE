@@ -4,7 +4,8 @@ import com.capstone.ttp.entitiy.Project;
 import com.capstone.ttp.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,9 +59,21 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public List<Project> getProjectsByUserId(int userId) {
+    public Page<Project> getProjectsByUserId(int userId, int page, int size) {
 
-            return projectRepository.findByUserId(userId);
+            return projectRepository.findByUserId(userId, PageRequest.of(page, size));
 
     }
+
+    @Override
+    public List<Project> findAll() {
+        return projectRepository.findAll();
+
+    }
+
+    @Override
+    public List<Project> getTop6Projects() {
+        return projectRepository.findTop6Projects();
+    }
+
 }

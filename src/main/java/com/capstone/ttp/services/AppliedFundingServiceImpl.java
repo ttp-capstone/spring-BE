@@ -55,4 +55,17 @@ public class AppliedFundingServiceImpl implements AppliedFundingService{
         return appliedFundingData;
     }
 
+    @Override
+    public int countByStatus(String status){
+        List<AppliedFunding> appliedFundingData = appliedFundingRepository.findByStatus(status);
+        if (appliedFundingData == null) {
+            return 0;
+        }
+        return appliedFundingData.size();
+    }
+    @Override
+    public List<AppliedFunding> getTop6AppliedFunding() {
+        return appliedFundingRepository.findTop6AppliedFunding();
+    }
+
 }

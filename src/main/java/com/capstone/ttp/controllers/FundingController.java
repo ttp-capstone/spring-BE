@@ -3,9 +3,11 @@ package com.capstone.ttp.controllers;
 import com.capstone.ttp.entitiy.AppliedFunding;
 import com.capstone.ttp.entitiy.Funding;
 import com.capstone.ttp.entitiy.Project;
+import com.capstone.ttp.entitiy.User;
 import com.capstone.ttp.services.AppliedFundingServiceImpl;
 import com.capstone.ttp.services.FundingServiceImpl;
 import com.capstone.ttp.services.ProjectServiceImpl;
+import com.capstone.ttp.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,11 +25,13 @@ public class FundingController {
 
     private final FundingServiceImpl fundingService;
     private final ProjectServiceImpl projectService;
+    private final UserService userService;
     private final AppliedFundingServiceImpl appliedFundingService;
 
-    public FundingController(FundingServiceImpl fundingService, ProjectServiceImpl projectService, AppliedFundingServiceImpl appliedFundingService){
+    public FundingController(UserService userService, FundingServiceImpl fundingService, ProjectServiceImpl projectService, AppliedFundingServiceImpl appliedFundingService){
         this.fundingService = fundingService;
         this.projectService = projectService;
+        this.userService = userService;
         this.appliedFundingService = appliedFundingService;
     }
 
@@ -171,6 +175,26 @@ public class FundingController {
             }
 
             return new ResponseEntity<>(appliedFundingData, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("list/applied_funding")
+    public ResponseEntity<?> newAppliedFunding(@RequestHeader("Username") String username) {
+
+        try {
+            Optional<User> user = userService.findByEmail(username);
+            int userId = user.get().getId();
+            if(userId == 0){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            List<AppliedFunding> AppliedFunding = appliedFundingService.getTop6AppliedFunding();
+
+            if (AppliedFunding.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.ok(AppliedFunding);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

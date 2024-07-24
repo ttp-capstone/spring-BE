@@ -1,6 +1,7 @@
 package com.capstone.ttp.services;
 
 import com.capstone.ttp.entitiy.Project;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -9,5 +10,8 @@ public interface ProjectService {
     Project createProject(Project project);
     Project updateProject(int id, Project updatedProject);
     void deleteProject(int id);
-    List<Project> getProjectsByUserId(int userId);
+    Page<Project> getProjectsByUserId(int userId, int page, int size);
+    List<Project> findAll();
+    List<Project> getTop6Projects();
+
 }
