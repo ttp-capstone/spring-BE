@@ -5,6 +5,8 @@ import com.capstone.ttp.entitiy.Funding;
 import com.capstone.ttp.entitiy.Project;
 import com.capstone.ttp.repositories.AppliedFundingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,16 +58,29 @@ public class AppliedFundingServiceImpl implements AppliedFundingService{
     }
 
     @Override
-    public int countByStatus(String status){
-        List<AppliedFunding> appliedFundingData = appliedFundingRepository.findByStatus(status);
+    public int countByStatus(int userId, String status){
+        List<AppliedFunding> appliedFundingData = appliedFundingRepository.findByUserIdAndStatus(userId, status);
         if (appliedFundingData == null) {
             return 0;
         }
         return appliedFundingData.size();
     }
     @Override
-    public List<AppliedFunding> getTop6AppliedFunding() {
-        return appliedFundingRepository.findTop6AppliedFunding();
+    public List<AppliedFunding> getTop6AppliedFunding(int userId) {
+        return appliedFundingRepository.findTop6AppliedFunding(userId);
     }
 
+    public int countByUserId(int userId){
+        List<AppliedFunding> allProjects = appliedFundingRepository.findAll();
+        return allProjects.stream()
+                .filter(appliedFunding -> appliedFunding.getUserId() == userId)
+                .toList().size();
+
+    }
+    @Override
+    public Page<AppliedFunding> getAppliedFundingByUserId(int userId, int page, int size) {
+
+        return appliedFundingRepository.findByUserId(userId, PageRequest.of(page, size));
+
+    }
 }

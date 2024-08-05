@@ -72,8 +72,15 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public List<Project> getTop6Projects() {
-        return projectRepository.findTop6Projects();
+    public List<Project> getTop6Projects(int userId) {
+        return projectRepository.findTop6Projects(userId);
     }
 
+    public List<Project> countByUserId(int userId){
+        List<Project> allProjects = projectRepository.findAll();
+        return allProjects.stream()
+                .filter(project -> project.getUserId() == userId)
+                .toList();
+
+    }
 }

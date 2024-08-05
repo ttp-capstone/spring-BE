@@ -197,7 +197,7 @@ public class ProjectController {
         if(userId == 0){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        List<Project> projects = projectService.getTop6Projects();
+        List<Project> projects = projectService.getTop6Projects(userId);
 
         if (projects.isEmpty()) {
             return ResponseEntity.noContent().build();

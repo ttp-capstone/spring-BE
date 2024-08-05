@@ -34,12 +34,27 @@ public class UserController {
 
     @GetMapping("/me")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<User> authenticatedUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    public ResponseEntity<User> myAccount(@RequestHeader("Username") String username) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//
+//        User currentUser = (User) authentication.getPrincipal();
+//
+//        return ResponseEntity.ok(currentUser);
 
-        User currentUser = (User) authentication.getPrincipal();
+        try {
+            Optional<User> user1 = userService.findByEmail(username);
+            int userId = user1.get().getId();
+//            log.info("User id {}", userId);
+            if (userId == 0) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            return ResponseEntity.ok(user1.get());
 
-        return ResponseEntity.ok(currentUser);
+        }
+         catch (Exception e) {
+            System.out.println(e.toString());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/me/users")
@@ -71,10 +86,10 @@ public class UserController {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
 
-            int projectCount = projectService.findAll().size();
-            int appliedCount = appliedFundingService.findAll().size();
-            int acceptedAppliedCount = appliedFundingService.countByStatus("Accepted");
-            int rejectedAppliedCount = appliedFundingService.countByStatus("Rejected");
+            int projectCount = projectService.countByUserId(userId).size();
+            int appliedCount = appliedFundingService.countByUserId(userId);
+            int acceptedAppliedCount = appliedFundingService.countByStatus(userId, "Accepted");
+            int rejectedAppliedCount = appliedFundingService.countByStatus(userId, "Rejected");
             Map<String, Object> response = new HashMap<>();
             response.put("total_project", projectCount);
             response.put("total_appliedFunding", appliedCount);
@@ -82,6 +97,27 @@ public class UserController {
             response.put("total_rejected", rejectedAppliedCount);
 
             return ResponseEntity.ok().body(response);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/me")
+    public ResponseEntity<User> updateUser(@RequestHeader("Username") String username, @RequestBody User user) {
+        try {
+            Optional<User> user1 = userService.findByEmail(username);
+            int userId = user1.get().getId();
+//            log.info("User id {}", userId);
+            if(userId == 0){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            User updatedUser = userService.updateUser(userId, user);
+            if (updatedUser != null) {
+                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             System.out.println(e.toString());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

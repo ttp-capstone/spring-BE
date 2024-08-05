@@ -3,6 +3,7 @@ package com.capstone.ttp.services;
 import com.capstone.ttp.entitiy.AppliedFunding;
 import com.capstone.ttp.entitiy.Funding;
 import com.capstone.ttp.entitiy.Project;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +17,8 @@ public interface AppliedFundingService {
 
     public List<AppliedFunding> findAll();
 
-    public int countByStatus(String status);
-
-    List<AppliedFunding> getTop6AppliedFunding();
+    public int countByStatus(int userId, String status);
+    public int countByUserId(int userId);
+    List<AppliedFunding> getTop6AppliedFunding(int userId);
+    Page<AppliedFunding> getAppliedFundingByUserId(int userId, int page, int size);
 }

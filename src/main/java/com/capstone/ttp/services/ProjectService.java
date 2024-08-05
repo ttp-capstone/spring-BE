@@ -12,6 +12,7 @@ public interface ProjectService {
     void deleteProject(int id);
     Page<Project> getProjectsByUserId(int userId, int page, int size);
     List<Project> findAll();
-    List<Project> getTop6Projects();
+    List<Project> getTop6Projects(int userId);
+    List<Project> countByUserId(int userId);
 
 }

@@ -10,6 +10,7 @@ import com.capstone.ttp.services.ProjectServiceImpl;
 import com.capstone.ttp.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -143,15 +144,20 @@ public class FundingController {
     }
 
     @PostMapping("apply/funding/{id}/{projectId}")
-    public ResponseEntity<?> applyFunding(@PathVariable("id") int id, @PathVariable("projectId") int projectId) {
-
+    public ResponseEntity<?> applyFunding(@PathVariable("id") int id, @PathVariable("projectId") int projectId,
+                                          @RequestHeader("Username") String username) {
+        Optional<User> user = userService.findByEmail(username);
+        int userId = user.get().getId();
+        if(userId == 0){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
         Optional<Funding> fundingData = fundingService.findById(id);
         Optional<Project> projectData = projectService.findById(projectId);
         if (fundingData.isPresent() && projectData.isPresent()) {
             AppliedFunding appliedFunding = new AppliedFunding();
             appliedFunding.setFunding(fundingData.get());
             appliedFunding.setProject(projectData.get());
-
+            appliedFunding.setUserId(userId);
             Date today = new Date();
             appliedFunding.setApplicationDate(today);
             appliedFunding.setStatus("Pending");
@@ -165,10 +171,18 @@ public class FundingController {
     }
 
     @GetMapping("all/applied_funding")
-    public ResponseEntity<?> allFunding() {
+    public ResponseEntity<Page<AppliedFunding>> allFunding(@RequestHeader("Username") String username,
+                                        @RequestParam(required = false) String title,
+                                        @RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "2") int size) {
 
         try {
-            List<AppliedFunding> appliedFundingData = appliedFundingService.findAll();
+            Optional<User> user = userService.findByEmail(username);
+            int userId = user.get().getId();
+            if(userId == 0){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            Page<AppliedFunding> appliedFundingData = appliedFundingService.getAppliedFundingByUserId(userId, page, size);
 //            log.info("info"+funding);
             if (appliedFundingData.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -188,7 +202,7 @@ public class FundingController {
             if(userId == 0){
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
-            List<AppliedFunding> AppliedFunding = appliedFundingService.getTop6AppliedFunding();
+            List<AppliedFunding> AppliedFunding = appliedFundingService.getTop6AppliedFunding(userId);
 
             if (AppliedFunding.isEmpty()) {
                 return ResponseEntity.noContent().build();

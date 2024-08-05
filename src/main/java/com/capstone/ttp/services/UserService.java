@@ -61,4 +61,18 @@ public class UserService {
         return userRepository.findById(id);
 
     }
+
+    public User updateUser(int id, User updatedUser) {
+
+        return userRepository.findById(id)
+                .map(user -> {
+                    user.setFullName(updatedUser.getFullName());
+
+                    return userRepository.save(user);
+                })
+                .orElse(null);
+
+    }
+
+
 }

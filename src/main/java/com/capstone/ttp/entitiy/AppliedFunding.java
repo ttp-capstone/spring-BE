@@ -28,6 +28,7 @@ public class AppliedFunding {
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Project project;
 
+    private int userId;
     private String status;
     private String description;
     private Date applicationDate;
